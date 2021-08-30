@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<ScheduleCreator.Models.Lesson>
+@using ScheduleCreator.Models.Enums
+
+<div>
+    @foreach (var schedule in (List<Schedule>)@ViewData["Schedules"])
+    {
+        <div class="text-center">
+            <h1 class="display-4">@schedule.Name</h1>
+            <table border="5" cellspacing="0" align="center">
+                <tr>
+                    <td align="center" height="50"
+                        width="100">
+                        <br>
+                        <b>Day/Period</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>I<br>9:30-10:20</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>II<br>10:20-11:10</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>III<br>11:10-12:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>IV<br>12:40-1:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>V<br>1:30-2:20</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>VI<br>2:20-3:10</b>
+                    </td>
+                </tr>
+                @foreach (Days day in Enum.GetValues(typeof(Days)))
+                {
+                    <tr>
+                        <td align="center" height="50">
+                            <b>@Enum.GetName(typeof(Days), day)</b>
+                        </td>
+                        <td align="center" height="50">@Model.FirstOrDefault(i => i.Day == day && i.Number == LessonsNumbers.First)?.Name</td>
+                        <td align="center" height="50">@Model.FirstOrDefault(i => i.Day == day && i.Number == LessonsNumbers.Second)?.Name</td>
+                        <td align="center" height="50">@Model.FirstOrDefault(i => i.Day == day && i.Number == LessonsNumbers.Third)?.Name</td>
+                        <td align="center" height="50">@Model.FirstOrDefault(i => i.Day == day && i.Number == LessonsNumbers.Fourth)?.Name</td>
+                        <td align="center" height="50">@Model.FirstOrDefault(i => i.Day == day && i.Number == LessonsNumbers.Fifth)?.Name</td>
+                        <td align="center" height="50">@Model.FirstOrDefault(i => i.Day == day && i.Number == LessonsNumbers.Sixth)?.Name</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
+
+
